@@ -119,3 +119,24 @@ Step 2: Create Freestyle Project (e.g., MavenJava_Build)
                       “MavenJava_Test”
 2.	The pipeline is successful if it is in green color as shown ->check the console of the test project
 3.	The test project is successful and all the artifacts are archived successfully
+
+
+└── Step 4: Create Freestyle Project (e.g., MavenWeb_Deploy)
+        ├── Enter project name (e.g., MavenWeb_Deploy)
+        ├── Click "OK"
+        └── Configure the project:
+            ├── Description: "Web Code Deployment"
+            ├── Build Environment:
+            		└── Check: "Delete the workspace before build starts"
+            ├── Add Build Step -> "Copy artifacts from another project"
+            		└── Project name: MavenWeb_Test
+            		└── Build: Stable build only
+               	└── Artifacts to copy: **/*
+            └── Post-build Actions:
+                ├── Add Post Build Action -> "Deploy WAR/EAR to a container"
+   └── WAR/EAR File: **/*.war
+   └── Context path: Webpath
+ └── Add container -> Tomcat 9.x remote
+└── Credentials: Username: admin, Password: 1234
+── Tomcat URL: https://localhost:8085/
+                └── Apply and Save
