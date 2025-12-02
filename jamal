@@ -9,3 +9,7 @@ kubectl set env deployment/mysql MYSQL_ROOT_PASSWORD=root
 kubectl expose deployment mysql --port=3306
 kubectl get pods
 kubectl exec -it <pod-name> -- mysql -u root -proot
+
+docker pull jasonrivers/nagios:latest
+docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
+minikube dashboard
