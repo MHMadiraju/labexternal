@@ -184,3 +184,58 @@ Step 2: Create Freestyle Project (e.g., MavenJava_Build)
 | `git fetch origin branchname`          | Fetch a specific branch            | Download a single branch             |
 | `git remote show origin`               | Detailed remote info               | View remote branch status            |
 | `git pull --rebase origin main`        | Rebase local branch on remote      | Keep linear history                  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+    depends_on:
+      - redis
+    restart: always
+
+  redis:
+    image: redis:latest
+    container_name: redis_server
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: always
+
+volumes:
+  redis_data:
+
+
+
+docker-compose up -d
+docker ps
+docker exec -it redis_server redis-cli
